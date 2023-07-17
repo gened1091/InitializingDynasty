@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Round {{ current_move|string }}
+{% endblock %}
+
+{% block main %}
+    <div class="mb-5">
+        <br>
+
+        <h3> Round {{ current_move|string }} </h3>
+        <table>
+            <thead>
+                <th>Overall Score %:</th>
+                <th>Efficiency %:</th>
+                <th>Social Unrest %:</th>
+                <th>Imperial Funds: </th>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td> <h4> {{ optimization }} </h4> </td>
+                    <td> <h4> {{ society_data.efficiency|string }} </h4></td>
+                    <td> <h4> {{ society_data.unrest|string }} </h4> </td>
+                    <td> <h4> {{ society_data.money|string }} </h4> </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <form action="/play" method="post">
+            <div class="form-group">
+                <label for="surveillance"> 
+                    <h4> &#128269 Upgrade Imperial Surveillance: </h4> 
+                    <p> This will reduce the error in the displayed attribute values for each person. </p>
+                </label>
+                <select multiple class="form-control" name="surveillance">
+                    <option selected value="{{ current_tier }}"> Current Tier: {{ current_tier + 1 }}</option>
+                    {% if current_tier < 4 %}
+                        <option value="{{ current_tier + 1 }}"> Next Tier: {{ current_tier + 2 }} for &#20803 {{ tier_costs[current_tier + 1] }}</option>
+                    {% endif %}
+                </select>
+            </div>
+            
+            <br>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Crime +/- {{ tiers[current_tier] }}</th>
+                        <th>Rel. +/- {{ tiers[current_tier] }}</th>
+                        <th>Agr. +/- {{ tiers[current_tier] }}</th>
+                        <th>Trade +/- {{ tiers[current_tier] }}</th>
+                        <th>Office. +/- {{ tiers[current_tier] }}</th>
+                        <th> Change District? </th>
+                        <th> Imperial Action? </th>
+                        <th> Action Severity?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(npc_data|length) %}
+                        <tr>
+                            <td> 
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ npc_data[i].crime|string if npc_data[i].crime > 0 else '0' }}%; background-color:#990000 !important;" aria-valuenow="{{ npc_data[i].crime|string if npc_data[i].crime > 0 else '0' }}" aria-valuemin="0" aria-valuemax="100"> {{ npc_data[i].crime|string if npc_data[i].crime > 0 else '0' }}</div>
+                                </div> 
+                            </td>
+                            <td> 
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ npc_data[i].reliability|string if npc_data[i].reliability > 0 else '0' }}%; background-color:#990000 !important;" aria-valuenow="{{ npc_data[i].reliability|string if npc_data[i].reliability > 0 else '0' }}" aria-valuemin="0" aria-valuemax="100"> {{ npc_data[i].reliability|string if npc_data[i].reliability > 0 else '0' }} </div>
+                                </div> 
+                            </td>
+                            <td> 
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ npc_data[i].agriculture|string if npc_data[i].agriculture > 0 else '0' }}%; background-color:#990000 !important;" aria-valuenow="{{ npc_data[i].agriculture|string if npc_data[i].agriculture > 0 else '0' }}" aria-valuemin="0" aria-valuemax="100"> {{ npc_data[i].agriculture|string if npc_data[i].agriculture > 0 else '0' }} </div>
+                                </div> 
+                            </td>
+                            <td> 
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ npc_data[i].trade|string if npc_data[i].trade > 0 else '0' }}%; background-color:#990000 !important;" aria-valuenow="{{ npc_data[i].trade|string if npc_data[i].trade > 0 else '0' }}" aria-valuemin="0" aria-valuemax="100"> {{ npc_data[i].trade|string if npc_data[i].trade > 0 else '0' }} </div>
+                                </div> 
+                            </td>
+                            <td> 
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ npc_data[i].office|string if npc_data[i].office > 0 else '0' }}%; background-color:#990000 !important;" aria-valuenow="{{ npc_data[i].office|string if npc_data[i].office > 0 else '0' }}" aria-valuemin="0" aria-valuemax="100"> {{ npc_data[i].office|string if npc_data[i].office > 0 else '0' }} </div>
+                                </div> 
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <select multiple class="form-control" name="location{{ i|string }}">
+                                        {% if npc_data[i].district == 1 %}
+                                            <option selected value="1">Agriculture</option>
+                                            <option value="2"> Trade </option>
+                                            <option value="3"> Office </option>
+                                        {% elif npc_data[i].district == 2 %}
+                                            <option value="1"> Agriculture </option>
+                                            <option selected value="2"> Trade </option>
+                                            <option value="3"> Office </option>
+                                        {% else %}
+                                            <option value="1">Agriculture</option>
+                                            <option value="2"> Trade </option>
+                                            <option selected value="3"> Office </option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <select multiple class="form-control" name="action{{ i|string }}">
+                                        <option value="reward">Reward</option>
+                                        <option selected value="leave">Leave Alone</option>
+                                        <option value="punish">Punish</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <select multiple class="form-control" name="severity{{ i|string }}">
+                                        <option selected value="0">Light: &#20803 100 or 4% Unrest</option>
+                                        <option value="1">Average: &#20803 400 or 10% Unrest</option>
+                                        <option value="2">Extreme: &#20803 900 or 15% Unrest</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <br>
+        
+            <button type="button submit" class="btn btn-success"> Simulate Next Month </button>
+        </form> 
+    </div>
+
+{% endblock %}

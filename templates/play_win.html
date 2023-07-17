@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Victory!
+{% endblock %}
+
+{% block main %}
+    <div class="mb-5">
+        <br>
+        <h4> Your dynasty is a success! </h4>
+        <p> Congratulations!  It took you {{moves}} rounds to reach this perfect social balance.  </p>
+        <br>
+        <a href="/play_start" class="btn btn-success"> Play Again </a>
+    </div>
+{% endblock %}

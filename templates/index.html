@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <div class="mb-5">
+        <br>
+
+        <h2> <b> Welcome to Initializing a Dynasty! </b> </h2>
+
+        <div class="card-group">
+            <div class="card" style="width: 50%;">
+                <div class="card-body">
+                    <h4 class="card-title">Discover Ancient Legalist Philosophy</h4>
+                    <p class="card-text"> The ideological foundation of many ancient Chinese dynasties rested upon legalism, a philosophy rooted in the use of rewards and punishments to achieve social good.  Discover the inner workings of this key ideology by clicking the link below: </p>
+                    <a href="/learn" class="btn btn-success"> Learn More </a>
+                </div>
+            </div>
+            <div class="card" style="width: 50%;">
+                <div class="card-body">
+                    <h4 class="card-title">Practice Your Imperial Skills</h4>
+                    <p class="card-text"> Feel that your legalist fundamentals are up to the task of ruling a small populace?  Try out our game by clicking on the link below, which places you at the helm of a simulated 25-person society, with the goal of running it as perfectly as possible. </p>
+                    <a href="/play_start" class="btn btn-success"> Play Game </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

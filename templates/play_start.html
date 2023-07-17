@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Start Game
+{% endblock %}
+
+{% block main %}
+    <div class="mb-5">
+        <div class="text-block">
+            <br>
+
+            <h4> Simulating a Legalist Empire: Game Instructions </h4>
+
+            <br>
+
+            <p> You are the emperor of a new 25-person dynasty that is in danger of falling in anarchy without a leader to organize society. </p>
+
+            <p> Your empire is split into 3 districts: agriculture, trade, and office; however, not every citizen is equally skilled in these three areas, and they are initially assigned to these fields at random. You need to match people to their abilities, as this will affect how much money your society is able to make per round. </p> 
+            <div class="card-group">
+                <div class="card" style="width: 50%;">
+                    <div class="card-body">
+                        <h5 class="card-title">What you are presented:</h5>
+                        <table>
+                            <thead>
+                                <th style="width: 30%;"> Agriculture </th>
+                                <th style="width: 30%;"> Trade </th>
+                                <th style="width: 30%;"> Office </th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> 
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 50%; background-color:#990000 !important;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> 50 </div>
+                                        </div> 
+                                    </td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 75%; background-color:#990000 !important;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"> 75 </div>
+                                        </div> 
+                                    </td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 10%; background-color:#990000 !important;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> 10 </div>
+                                        </div> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card" style="width: 50%;">
+                    <div class="card-body">
+                        <h5 class="card-title">What you must decide:</h5>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td> 
+                                        <div class="form-group">
+                                            <select multiple class="form-control">
+                                                <option selected>Agriculture</option>
+                                                <option value="2"> Trade </option>
+                                                <option value="3"> Office </option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <p> People also exist on a spectrum of virtue determined by their reliability and crime rates. A citizen’s reliability will positively benefit your society, but crime will cost your society money and raise public unrest.  You must therefore levy rewards and punishments of varying severities to increase virtue and decrease crime, respectively.  Levying rewards will cost money but increase reliability.  Levying punishments will decrease crime and not cost any money, but will come at the expense of increased unrest. </p>
+            <div class="card-group">
+                <div class="card" style="width: 50%;">
+                    <div class="card-body">
+                        <h5 class="card-title">What you are presented:</h5>
+                        <table>
+                            <thead>
+                                <th style="width: 50%;"> Crime </th>
+                                <th style="width: 50%;"> Reliability </th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> 
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 50%; background-color:#990000 !important;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> 50 </div>
+                                        </div> 
+                                    </td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 20%; background-color:#990000 !important;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"> 20 </div>
+                                        </div> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card" style="width: 50%;">
+                    <div class="card-body">
+                        <h5 class="card-title">What you must decide:</h5>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="width: 30%;"> 
+                                        <div class="form-group">
+                                            <select multiple class="form-control">
+                                                <option>Reward</option>
+                                                <option selected>Leave Alone</option>
+                                                <option>Punish</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td style="width: 70%;">
+                                        <div class="form-group">
+                                            <select multiple class="form-control">
+                                                <option selected>Light: &#20803 300 (reward)/3% Unrest Penalty (punish) </option>
+                                                <option>Average: &#20803 600 (reward)/8% Unrest Penalty (punish) </option>
+                                                <option>Extreme: &#20803 900 (reward)/29% Unrest Penalty (punish) </option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <p> To help advise you in your decisions, you have the option of investing in increased surveillance, which helps you discover more about your citizens and your districts.  Indeed, the values that you are presented for each citizen (as shown above) are NOT accurate: they each contain some sampling error!  Upgrading your surveillance capabilities will reduce this error and allow you to make more informed decisions, but will also cost significant amounts of money, potentially putting your society in dire financial straits if you aren't careful.  There are FIVE levels of surveillance that you can choose from, and each upgrade is a one-time purchase in the game.  </p>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">What you must decide:</h5>
+                        <select multiple class="form-control">
+                            <option selected> Current Tier: 1 </option>
+                            <option> Next Tier: 2 for &#20803 2500 </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <p> Your tasks are to increase wealth, mitigate unrest, and optimize district efficiency. As you accomplish these three tasks, your optimization score will increase. How fast can you reach 100% optimization? </p>
+            
+            <br>
+
+            <a type="button" class="btn btn-success" href="/play">Start!</a>
+
+            <br>
+
+        </div>
+    </div>
+{% endblock %}

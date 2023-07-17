@@ -1,0 +1,72 @@
+/* Navigation bar formatting */
+nav
+{
+    background-color: #ffffff;
+}
+
+nav .navbar-brand {
+    color: #cc0000;
+    font-size: x-large;
+    font-weight: 800;
+    padding: 1rem 1rem;
+}
+nav .nav-link {
+    color: #990000;
+    font-size: large;
+    font-weight: 500;
+    padding: 1rem 1rem;
+}
+nav .nav-link:hover {
+    color: #ffffff;
+    background-color: #990000;
+    transition: color 0.1s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+/* Table formatting */
+
+table {
+    background-color: transparent;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    width: 10%;
+    vertical-align: middle;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: rgba(183, 220, 160, .5);
+}
+
+/* Background image source: https://i0.wp.com/asiatimes.com/wp-content/uploads/2020/02/Fig-1-Selden-Map-c-Bodleian-Library-University-of-Oxford.jpg?fit=1200%2C675&ssl=1 */
+body {
+    background-image: url("background_img.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    font-family: Georgia;
+}
+
+.mb-5 {
+    background-color: rgb(183, 182, 160);
+    padding: 0.75rem;
+}
+
+h2, h3, h4, h5 {
+    color: #003300;
+}
+
+.card {
+    background-color: transparent;
+    border-color: transparent;
+    padding: 0.75rem;
+}
+
+.text-block {
+    padding-right: 4rem;
+    padding-left: 4rem;
+}
